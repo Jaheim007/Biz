@@ -1,6 +1,13 @@
 from django.shortcuts import render
+from .models import Banner, About, AboutDetails, Features_Details
+from Service.models import Newsletter, Started
 
-def index(request):       
+def index(request):     
+    banner = Banner.objects.all()  
+    about = About.objects.all()  
+    about_details = AboutDetails.objects.all()
+    Start = Started.objects.all()
+    features_details = Features_Details.objects.all()
     return render(request, 'pages/index.html', locals())
 
 def about(request):       

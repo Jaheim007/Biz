@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Newsletter, Started, Team, Footer
+from django.utils.safestring import mark_safe
+from .models import Newsletter, Started, Team, Footer, TeamMember
 
 @admin.register(Newsletter)
 class News(admin.ModelAdmin):          
@@ -7,7 +8,16 @@ class News(admin.ModelAdmin):
     
 @admin.register(Team)
 class Team(admin.ModelAdmin):           
-    list_display = ('section_title', 'name', 'profession')
+    list_display = ('section_title',)
+    
+@admin.register(TeamMember)
+class TeamMember(admin.ModelAdmin):           
+    list_display = ('views','name',)
+
+    def views(self, obj):     
+        return mark_safe(f'<img src="{obj.img.url}" style = "height:100px; width:200px">')
+    views.short_description =  'Aperçu des images' 
+
     
 @admin.register(Started)
 class Start(admin.ModelAdmin):          

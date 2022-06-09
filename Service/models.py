@@ -11,8 +11,11 @@ class Started(models.Model):
     
 class Team(models.Model):     
     section_title = models.CharField(max_length=255)
+
+class TeamMember(models.Model):       
     name = models.CharField(max_length=255)
     profession = models.CharField(max_length=255)
+    img = models.FileField()
     fb_link = models.URLField()
     Insta_link = models.URLField()
     Linked_link = models.URLField()

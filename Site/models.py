@@ -3,16 +3,20 @@ from django.db import models
 class Banner(models.Model):        
     title = models.CharField(max_length=255)
     description = models.TextField()
-    img = models.FileField()
+    img = models.FileField() 
+
+class TestTitle(models.Model):
+    section_title = models.CharField(max_length=255)  
 
 class About(models.Model):       
     title = models.CharField(max_length=255)
     description = models.TextField()
-    mini_title1 = models.CharField(max_length=255)
-    mini_description1 = models.TextField()
-    mini_title2 = models.CharField(max_length=255)
-    mini_description2 = models.TextField()
     img = models.FileField()
+
+class AboutDetails(models.Model):
+    title =  models.CharField(max_length=255)
+    description = models.TextField()
+    img = models.CharField(max_length=255)
     
 class Features(models.Model):      
     title = models.CharField(max_length=255)
@@ -27,11 +31,10 @@ class Slider(models.Model):
     img = models.FileField()
     
 class Testimonial(models.Model):       
-    section_title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    description = models.TextField()
     client_name = models.CharField(max_length=255)
     profession = models.CharField(max_length=255)
-    
+    img = models.FileField() 
     
     
     
