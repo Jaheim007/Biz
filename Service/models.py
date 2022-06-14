@@ -1,12 +1,14 @@
+from pyexpat import model
 from django.db import models
 
 class Newsletter(models.Model):
-   Email = models.EmailField( max_length=254)
+   email = models.EmailField(max_length=254)
     
 class Started(models.Model): 
     description = models.TextField()
     img = models.FileField()
-
+    
+    
 class Sevice_details(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -18,9 +20,19 @@ class TeamMember(models.Model):
     name = models.CharField(max_length=255)
     profession = models.CharField(max_length=255)
     img = models.FileField()
-    fb_link = models.URLField()
-    Insta_link = models.URLField()
-    Linked_link = models.URLField()
+    
+    def __str__(self):
+        return self.name
+    
+class Social_Team(models.Model): 
+    social = models.ForeignKey(TeamMember, on_delete=models.CASCADE, related_name="social_team")      
+    name = models.CharField(max_length=255)
+    icon = models.CharField(max_length=255)
+    url = models.URLField()
+    
+    def __str__(self):
+        return self.social.name
+
     
 class Footer(models.Model):   
     title = models.CharField(max_length=255)
@@ -31,7 +43,7 @@ class Footer(models.Model):
     youtude_link = models.URLField()
     twitter_link = models.URLField()
     insta_link = models.URLField()
-    linked_link = models.URLField()   
+    linked_link = models.URLField() 
     
 class Contact(models.Model):
     name = models.CharField(max_length=255)

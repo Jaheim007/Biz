@@ -1,6 +1,7 @@
-from django.shortcuts import render
+import email
+from django.shortcuts import render, redirect
 from .models import Banner, About, AboutDetails, Features_Details, Site_Info, Slider, Testimonial 
-from Service.models import Newsletter, Started, Sevice_details, TeamMember, Newsletter
+from Service.models import Newsletter, Started, Sevice_details, TeamMember, Newsletter, Social_Team
 
 
 def index(request):   
@@ -14,7 +15,13 @@ def index(request):
     service = Sevice_details.objects.all()
     testimonial = Testimonial.objects.all()
     team = TeamMember.objects.all() 
-
+    social_team = Social_Team.objects.all()     
+    
+    if request.method == "POST":
+        email = request.POST['email']
+        news = Newsletter(email = email)
+        news.save()
+            
     return render(request, 'pages/index.html', locals())
 
     
@@ -41,7 +48,14 @@ def feature(request):
     return render(request, 'pages/feature.html', locals())
 
 def quote(request):  
-    section = Site_Info.objects.first()     
+    section = Site_Info.objects.first()   
+    
+    if request.method == "POST":  
+        name = request.POST['name']  
+        email = request.POST['email']
+        news = Newsletter(email = email)
+        news.save()   
+          
     return render(request, 'pages/quote.html', locals())
 
 def team(request): 

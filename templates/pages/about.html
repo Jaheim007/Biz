@@ -101,11 +101,11 @@
                                 <h5>{{team.name}}</h5>
                                 <p class="mb-4">{{team.profession}}</p>
                                 <img class="img-fluid rounded-circle w-100 mb-4" src="{{team.img.url}}" alt="">
-                                <div class="d-flex justify-content-center">
-                                    <a class="btn btn-square text-primary bg-white m-1" href="{{ team.fb_link }}"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square text-primary bg-white m-1" href="{{ team.Insta_link }}"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square text-primary bg-white m-1" href="{{ team.Linked_link }}"><i class="fab fa-linkedin-in"></i></a>
-                                </div>
+                                    <div class="d-flex justify-content-center">
+                                        {% for team in team.social_team.all %}
+                                            <a class="btn btn-square text-primary bg-white m-1" href="{{ team.url }}"><i class="{{ team.icon }}"></i></a>
+                                        {% endfor %}
+                                    </div>
                             </div>
                         </div>
                     {% endfor %}

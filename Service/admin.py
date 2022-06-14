@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import Newsletter, Started, Footer, TeamMember, Sevice_details, Contact
+from .models import Newsletter, Social_Team, Started, Footer, TeamMember, Sevice_details, Contact
 
 @admin.register(Newsletter)
 class News(admin.ModelAdmin):          
-    list_display = ('Email', )
+    list_display = ('email', )
 
 @admin.register(Contact)
 class Contact(admin.ModelAdmin):          
@@ -19,6 +19,10 @@ class TeamMember(admin.ModelAdmin):
         return mark_safe(f'<img src="{obj.img.url}" style = "height:100px; width:200px">')
     views.short_description =  'Aperçu des images' 
 
+
+@admin.register(Social_Team)
+class Social_Team(admin.ModelAdmin):          
+    list_display = ('name','icon', 'url' )
     
 @admin.register(Started)
 class Start(admin.ModelAdmin):          

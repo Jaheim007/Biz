@@ -1,7 +1,7 @@
 from Service.models import Footer
 
-def Footer(request):      
-    footer = Footer.objects.get()
+def Footer_details(request):      
+    footer = Footer.objects.all()
     
     return{
         'footer': footer
