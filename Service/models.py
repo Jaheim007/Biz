@@ -1,16 +1,18 @@
 from django.db import models
 
 class Newsletter(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+   Email = models.EmailField( max_length=254)
     
 class Started(models.Model): 
-    title = models.CharField(max_length=255)
     description = models.TextField()
     img = models.FileField()
-    
-class Team(models.Model):     
-    section_title = models.CharField(max_length=255)
+
+class Sevice_details(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    img1 = models.CharField(max_length=255)
+    img2 = models.CharField(max_length=255)
+
 
 class TeamMember(models.Model):       
     name = models.CharField(max_length=255)
@@ -31,6 +33,15 @@ class Footer(models.Model):
     insta_link = models.URLField()
     linked_link = models.URLField()   
     
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    subject = models.CharField(max_length=255)
+    message = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
     
     
     

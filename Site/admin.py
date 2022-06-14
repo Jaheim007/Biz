@@ -1,11 +1,11 @@
 from pyexpat import model
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import AboutDetails, Banner, About, Features, Features_Details, Slider, Testimonial, TestTitle
+from .models import AboutDetails, Banner, About, Features, Features_Details, Slider, Testimonial, Site_Info
 
 @admin.register(Banner)
 class Banner(admin.ModelAdmin):      
-    list_display = ('views','title', 'description')
+    list_display = ('views', 'description')
 
     
     def views(self, obj):     
@@ -14,7 +14,7 @@ class Banner(admin.ModelAdmin):
     
 @admin.register(About)
 class About(admin.ModelAdmin):        
-    list_display = ('views','title', 'description',)
+    list_display = ('views', 'description',)
 
     
     def views(self, obj):     
@@ -28,7 +28,7 @@ class About(admin.ModelAdmin):
     
 @admin.register(Features)
 class Feature(admin.ModelAdmin):         
-    list_display = ('title', 'description')
+    list_display = ( 'description',)
     
 @admin.register(Features_Details)
 class Features_Detail(admin.ModelAdmin):
@@ -50,10 +50,11 @@ class Testimonial(admin.ModelAdmin):
     def views(self, obj):     
         return mark_safe(f'<img src="{obj.img.url}" style = "height:100px; width:200px">')
     views.short_description =  'Aperçu des images'
-    
-@admin.register(TestTitle)
-class Test(admin.ModelAdmin):          
-    list_display = ( 'section_title', )
+
+@admin.register(Site_Info)
+class Site(admin.ModelAdmin):
+    list_display = ( 'section_banner_title', 'section_about_title')
+
 
 
 
