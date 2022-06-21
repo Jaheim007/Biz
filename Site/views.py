@@ -1,7 +1,8 @@
-import email
+
+from sre_constants import SUCCESS
 from django.shortcuts import render, redirect
-from .models import Banner, About, AboutDetails, Features_Details, Site_Info, Slider, Testimonial 
-from Service.models import Newsletter, Started, Sevice_details, TeamMember, Newsletter, Social_Team
+from .models import Banner, About, AboutDetails, Features_Details, Site_Info, Slider, Testimonial
+from Service.models import Newsletter, Started, Sevice_details, TeamMember, Newsletter, Social_Team, Contact, Quote
 
 
 def index(request):   
@@ -15,12 +16,14 @@ def index(request):
     service = Sevice_details.objects.all()
     testimonial = Testimonial.objects.all()
     team = TeamMember.objects.all() 
-    social_team = Social_Team.objects.all()     
+    social_team = Social_Team.objects.all()
+         
     
     if request.method == "POST":
-        email = request.POST['email']
+        email = request.POST.get('email')
         news = Newsletter(email = email)
         news.save()
+        success = 'created' + email
             
     return render(request, 'pages/index.html', locals())
 
@@ -39,7 +42,21 @@ def error(request):
     return render(request, 'pages/404.html', locals())
 
 def contact(request):  
-    section = Site_Info.objects.first()     
+    section = Site_Info.objects.first()  
+
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']  
+        subject = request.POST['subject']  
+        message = request.POST['message']
+        contact = Contact(
+            name = name, 
+            email = email, 
+            subject = subject , 
+            message = message)
+
+        contact.save()
+
     return render(request, 'pages/contact.html', locals())
 
 def feature(request):   
@@ -50,12 +67,20 @@ def feature(request):
 def quote(request):  
     section = Site_Info.objects.first()   
     
-    if request.method == "POST":  
-        name = request.POST['name']  
-        email = request.POST['email']
-        news = Newsletter(email = email)
-        news.save()   
-          
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email') 
+        service = request.POST.get('service')  
+        comment = request.POST.get('comment')
+        quote = Quote(
+            name = name, 
+            email = email, 
+            service = service, 
+            comment = comment)
+
+        quote.save()
+    
+
     return render(request, 'pages/quote.html', locals())
 
 def team(request): 

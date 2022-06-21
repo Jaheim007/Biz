@@ -1,3 +1,5 @@
+import email
+from email.errors import MultipartInvariantViolationDefect
 from pyexpat import model
 from django.db import models
 
@@ -54,7 +56,15 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
-    
+class Quote(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100)
+    service = models.CharField(max_length=100)
+    comment = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.name
+
     
     
 # Create your models here.

@@ -43,8 +43,7 @@ class Testimonial(models.Model):
     profession = models.CharField(max_length=255)
     img = models.FileField() 
     
-    
-    
+  
 
     
 # Create your models here.

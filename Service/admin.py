@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import Newsletter, Social_Team, Started, Footer, TeamMember, Sevice_details, Contact
+from .models import Newsletter, Social_Team, Started, Footer, TeamMember, Sevice_details, Contact, Quote
 
 @admin.register(Newsletter)
 class News(admin.ModelAdmin):          
@@ -41,5 +41,9 @@ class Footer(admin.ModelAdmin):
 @admin.register(Sevice_details)
 class Service(admin.ModelAdmin):        
     list_display = ('title', 'description', 'img1', 'img2')
+
+@admin.register(Quote)
+class Quote(admin.ModelAdmin):        
+    list_display = ('name', 'email', 'service', 'comment')
 
 # Register your models here.
