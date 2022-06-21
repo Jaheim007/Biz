@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
     'Service', 
     'Site',
-    
+    'rest_framework',
+    'drf_yasg2',
+   
 ]
 
 MIDDLEWARE = [
@@ -76,6 +79,10 @@ TEMPLATES = [
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")    
 ]
+
+GRAPHENE = {
+    "SCHEMA": "Service.schema.schema"
+}
 
 WSGI_APPLICATION = 'Biz.wsgi.application'
 

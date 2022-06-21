@@ -1,8 +1,9 @@
-
-from sre_constants import SUCCESS
+from django import views
 from django.shortcuts import render, redirect
+from rest_framework import viewsets
 from .models import Banner, About, AboutDetails, Features_Details, Site_Info, Slider, Testimonial
 from Service.models import Newsletter, Started, Sevice_details, TeamMember, Newsletter, Social_Team, Contact, Quote
+from Service.serializers import ContactSerializers, NewsletterSerializers, QuoteSerializers
 
 
 def index(request):   
@@ -23,7 +24,7 @@ def index(request):
         email = request.POST.get('email')
         news = Newsletter(email = email)
         news.save()
-        success = 'created' + email
+        
             
     return render(request, 'pages/index.html', locals())
 
@@ -98,6 +99,25 @@ def service(request):
     testimonial = Testimonial.objects.all()  
     section = Site_Info.objects.first()
     return render(request, 'pages/service.html', locals())
+
+#Doing Api Rest in the views.py     
+class ContactViewsSet(viewsets.ModelViewSet):      
+    
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializers
+
+class QuoteViewsSet(viewsets.ModelViewSet):      
+    
+    queryset = Quote.objects.all()
+    serializer_class = QuoteSerializers
+
+class NewsletterViewsSet(viewsets.ModelViewSet):      
+    
+    queryset = Newsletter.objects.all()
+    serializer_class = NewsletterSerializers
+    
+
+    
 
 
 

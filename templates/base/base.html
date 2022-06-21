@@ -31,6 +31,9 @@
 
     <!-- Template Stylesheet -->
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+    <!-- Swagger -->
+    <link rel="stylesheet" type="text/css" href="//unpkg.com/swagger-ui-dist@3/swagger-ui.css" />
 </head>
 
 <body>
@@ -159,6 +162,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
     <script src="{% static 'assets/lib/wow/wow.min.js' %}"></script>
     <script src="{% static 'assets/lib/easing/easing.min.js' %}"></script>
     <script src="{% static 'assets/lib/waypoints/waypoints.min.js' %}"></script>
@@ -166,6 +171,8 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'assets/js/main.js' %}"></script>
+
+
 
     #Unrefreshable loading for Newsletter 
     <script type='text/javascript'>
@@ -182,7 +189,12 @@
                 },
                 
                 success: function(){
-                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      }) 
                 }
             });
         });
@@ -235,6 +247,8 @@
             });
         });
     </script>
+
+    
 </body>
 
 </html>

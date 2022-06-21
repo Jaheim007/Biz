@@ -1,4 +1,3 @@
-from unicodedata import name
 from django.urls import path
 from .views import index, about, error, testimonial, feature, quote, team, contact, service
 
@@ -11,5 +10,6 @@ urlpatterns = [
     path('quote', quote , name='quote'),
     path('team', team , name='team'), 
     path('contact', contact, name='contact'),
-    path('service', service, name='service')
+    path('service', service, name='service'),
+   
 ]
