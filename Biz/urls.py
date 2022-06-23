@@ -12,7 +12,7 @@ from django.conf.urls.static import static
 
 
 from django.views.decorators.csrf import csrf_exempt
-from Service.schema import schema
+# from Service.schema import schema
 
 from Site.urls_api import router as Site_router
 
@@ -40,7 +40,7 @@ urlpatterns = [
     path('rest/', include(router.urls)),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
+    # path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
     
 ]
 
